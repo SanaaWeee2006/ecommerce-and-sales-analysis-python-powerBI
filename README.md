@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project analyzes the **Brazilian E-Commerce Public Dataset by Olist** to understand sales performance, customer behavior, product performance, delivery operations, and customer experience.
+This project analyzes the **Brazilian E-Commerce Public Dataset** to understand sales performance, customer behavior, product performance, delivery operations, and customer experience.
 
 The objective is to transform raw e-commerce data into actionable business insights using **Python, Pandas, Power BI, and DAX**.
 
@@ -10,52 +10,28 @@ The project focuses on descriptive and diagnostic analytics rather than machine 
 
 ---
 
-## Business Questions
+## Business Problem
 
-The analysis addresses the following questions:
+An e-commerce business generates large amounts of data across orders, customers, products, sellers, payments, deliveries, and reviews. However, raw transactional data alone does not clearly show what is driving sales, whether customers are returning, which products and customers are most valuable, or how operational performance affects customer experience.
 
-### Sales Performance
+The business needs a data-driven view to:
 
-* How much revenue was generated?
-* How many orders and items were sold?
-* How does revenue change over time?
-* Which product categories generate the most revenue?
-* Which customer states contribute most to revenue?
-* What is the average order value?
-* How significant is freight relative to sales?
+- Understand overall sales and revenue performance.
+- Identify high-performing products and categories.
+- Understand customer purchasing and repeat-purchase behavior.
+- Identify high-value and at-risk customer segments.
+- Evaluate delivery performance across different regions.
+- Understand the relationship between delivery delays and customer satisfaction.
+- Monitor freight costs alongside sales.
+- Convert these findings into actionable business recommendations.
 
-### Customer & Product Analytics
-
-* How many unique customers are there?
-* What proportion of customers make repeat purchases?
-* How frequently do customers purchase?
-* Which customers generate the highest revenue?
-* Which customer segments have the highest value or risk?
-* Which products and categories perform best?
-
-### Operations & Customer Experience
-
-* How long does delivery take on average?
-* What percentage of orders arrive late?
-* Which states have higher delivery delays?
-* Are late deliveries associated with lower review scores?
-* What is the distribution of order statuses?
+The goal of this project is to transform raw e-commerce transaction data into meaningful sales, customer, product, and operational insights that can support better business decision-making.
 
 ---
 
 ## Dataset
 
-The project uses the **Brazilian E-Commerce Public Dataset by Olist**, containing information about:
-
-* Customers
-* Orders
-* Order items
-* Payments
-* Reviews
-* Products
-* Sellers
-* Product categories
-* Geolocation
+dataset link - https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce/data
 
 The analysis primarily uses the following tables:
 
@@ -84,11 +60,6 @@ The analysis primarily uses the following tables:
   * Data modeling
   * DAX
   * Interactive dashboards
-* **SQL Server**
-
-  * Data validation and analytical SQL scripts
-
-Machine learning was intentionally excluded from this project.
 
 ---
 
@@ -149,7 +120,7 @@ The delivered-order analysis produced the following core metrics:
 | Items Sold            |    **110,197** |
 | Average Order Value   |   **R$137.04** |
 | Freight               |    **R$2.20M** |
-| Average Delivery Time | **12.56 days** |
+| Average Delivery Days | **12.56 days** |
 | Late Delivery Rate    |      **8.11%** |
 
 Revenue represents the sum of item prices for delivered orders.
@@ -172,17 +143,14 @@ This page provides a high-level overview of sales performance.
 * Total Orders
 * Average Order Value
 * Items Sold
-* Items per Order
 * Total Freight
-* Revenue Growth
-* Late Delivery Rate
 
 ### Visual analysis
 
 * Monthly revenue trend
 * Monthly order volume
-* Revenue by product category
-* Revenue by customer state
+* Performance per Product category
+* Top 10 States by Revenue
 
 This page is designed to answer:
 
@@ -200,27 +168,18 @@ This page focuses on customer behavior and product performance.
 * Repeat Customers
 * Repeat Customer Rate
 * Average Customer Revenue
-* Average Items per Customer
 
 ### Customer analysis
 
 * One-time vs repeat customers
 * Customer purchase frequency
-* Top customers by revenue
-* RFM customer segments
+* Customers per Segment
+* Revenue Share per Segment
 
 ### Product analysis
 
-* Category revenue
-* Order volume
-* Item volume
-* Revenue per order
-
-RFM analysis uses:
-
-* **Recency** — how recently the customer purchased
-* **Frequency** — how often the customer purchased
-* **Monetary** — how much revenue the customer generated
+* Top 10 Categories by revenue
+* Top 10 Ordered Product Categories
 
 Customers were grouped into segments such as:
 
@@ -244,14 +203,14 @@ This page evaluates delivery performance and its relationship with customer sati
 
 ### Key metrics
 
-* Average Delivery Time
+* Average Delivery Days
 * Late Orders
 * Late Delivery Rate
 * Average Review Score
 
 ### Visual analysis
 
-* Average delivery time by state
+* Top 10 state with Highest Late Delivery Rate
 * Late delivery rate by state
 * Review score: On-Time vs Late
 * Order status distribution
@@ -319,14 +278,6 @@ Geographic differences should be treated as areas for investigation rather than 
 
 ---
 
-### 6. Freight is a significant operational metric
-
-Delivered orders generated approximately **R$2.20M in freight charges** alongside approximately **R$13.22M in item-price revenue**.
-
-Freight should therefore be monitored alongside sales performance when evaluating sellers, categories, and operational efficiency.
-
----
-
 # Business Recommendations
 
 ## 1. Improve delivery reliability
@@ -371,16 +322,10 @@ This can highlight areas where transportation costs represent a relatively high 
 
 ---
 
-## 5. Make delivery reliability a CX KPI
-
-Because late deliveries are strongly associated with lower review scores, delivery performance should be monitored alongside customer-experience metrics rather than treated as a separate operational issue.
-
----
-
 # Project Structure
 
 ```text
-olist-ecommerce-analytics/
+ecommerce-analytics/
 │
 ├── data/
 │   ├── raw/
@@ -394,15 +339,13 @@ olist-ecommerce-analytics/
 │   ├── 02_eda.ipynb
 │   └── 03_customer_analysis.ipynb
 │
-├── sql/
-│   ├── 01_data_validation.sql
-│   ├── 02_sales_analysis.sql
-│   └── 03_customer_analysis.sql
-│
 ├── powerbi/
-│   └── olist_ecommerce_dashboard.pbix
+│   └── ecommerce_dashboard.pbix
 │
-├── outputs/
+├── dashboard_outputs/
+|   ├── 1_executive_overview_dashboard.png
+│   ├── 2_customers_&_products.png
+│   └── 3_operation_&_customer_experience.png
 │
 └── README.md
 ```
@@ -464,9 +407,6 @@ These findings provide practical opportunities to improve customer retention, de
 
 **Python:**
 Pandas · NumPy · Data Cleaning · Data Transformation · EDA · Aggregation · Feature Engineering
-
-**SQL:**
-Data Validation · Joins · Aggregations · Analytical Queries
 
 **Power BI:**
 Data Modeling · Relationships · DAX · KPI Design · Interactive Dashboards · Data Visualization
